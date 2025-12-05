@@ -1,0 +1,31 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+@layer base {
+  body {
+    @apply bg-neo-bg text-neo-black font-sans;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-mono font-bold;
+  }
+}
+
+@layer components {
+  .neo-card {
+    @apply border-4 border-neo-black shadow-neo bg-white transition-all duration-300;
+  }
+
+  .neo-card:hover {
+    @apply -translate-y-1 shadow-neo-hover;
+  }
+
+  .neo-card:active {
+    @apply scale-95 shadow-neo translate-y-0.5;
+  }
+}

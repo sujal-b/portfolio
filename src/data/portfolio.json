@@ -1,0 +1,133 @@
+{
+    "portfolio_config": {
+        "owner": "Sujal Barwad",
+        "role": "Computer Science Student & Data Analyst",
+        "theme": {
+            "style": "Neo-Brutalism",
+            "vibe": "Old Money Click, Chunky Borders, High Contrast",
+            "colors": {
+                "primary": "#000000",
+                "accent": "#00FF00",
+                "background": "#F5F5F0"
+            },
+            "animation": "Framer Motion layout projections (smooth expand/collapse)"
+        }
+    },
+    "grid_layout": [
+        {
+            "id": "hero",
+            "type": "hero",
+            "size": "2x2",
+            "title": "Hi, I'm Sujal.",
+            "subtitle": "I build systems that learn from data.",
+            "content": "CS Student with a 9.26 CGPA. Passionate about MLOps, Data Analytics, and Algorithmic Design."
+        },
+        {
+            "id": "exp-1",
+            "type": "experience",
+            "size": "2x1",
+            "title": "Data Analyst Intern",
+            "organization": "Arista Systems Pvt. Ltd.",
+            "date": "June 2025 - Aug 2025",
+            "tags": [
+                "Python",
+                "SQL",
+                "Tableau",
+                "Prophet"
+            ],
+            "short_desc": "Built real-time insight platforms for e-commerce.",
+            "detailed_content": [
+                "Developed a dynamic business monitoring dashboard for the e-commerce brand 'Kith' using Dash and Plotly.",
+                "Engineered a time-series forecasting model using Prophet, achieving 82% accuracy for sales predictions.",
+                "Optimized data pulls from multiple sources, reducing manual reporting time by 30%."
+            ]
+        },
+        {
+            "id": "proj-1",
+            "type": "project",
+            "size": "1x2",
+            "title": "AI Data Quality & Automation",
+            "tags": [
+                "Celery",
+                "Redis",
+                "MLOps",
+                "CI/CD"
+            ],
+            "short_desc": "Scalable engine for auto-data cleaning.",
+            "detailed_content": [
+                "Designed a non-blocking data processing engine using Celery and Redis.",
+                "Created an AI Co-pilot for automated data quality recommendations.",
+                "Implemented a full MLOps lifecycle with CI/CD pipelines for frontend, backend, and background workers."
+            ]
+        },
+        {
+            "id": "proj-2",
+            "type": "project",
+            "size": "1x1",
+            "title": "Market Demand Forecast",
+            "tags": [
+                "Random Forest",
+                "Scikit-Learn"
+            ],
+            "short_desc": "Predictive modeling for Japanese Manufacturer.",
+            "detailed_content": [
+                "Used Japanese sales data to forecast Indian market demand.",
+                "Achieved 86% accuracy using Random Forest (R²=0.82), outperforming Logistic Regression."
+            ]
+        },
+        {
+            "id": "skill-tech",
+            "type": "list",
+            "size": "1x1",
+            "title": "Tech Stack",
+            "items": [
+                "Python",
+                "SQL",
+                "Tableau",
+                "Hugging Face",
+                "OpenCV",
+                "Git",
+                "Pandas",
+                "OCI"
+            ]
+        },
+        {
+            "id": "widget-german",
+            "type": "widget",
+            "size": "1x1",
+            "title": "Learning",
+            "content": "German (Deutsch)",
+            "status": "A1/A2 Level",
+            "icon": "🇩🇪"
+        },
+        {
+            "id": "widget-hardware",
+            "type": "widget",
+            "size": "1x1",
+            "title": "My Lab",
+            "content": "Local AI Inference Rig",
+            "specs": "RTX 3050 (4GB) | 16GB RAM",
+            "subtext": "Running Ollama & Stable Diffusion locally."
+        },
+        {
+            "id": "education",
+            "type": "list",
+            "size": "2x1",
+            "title": "Education",
+            "items": [
+                "B.Tech CS - Amity University (CGPA 9.26/10, Top 3%)",
+                "Higher Secondary - St. Paul School (67%)"
+            ]
+        },
+        {
+            "id": "contact",
+            "type": "social",
+            "size": "2x1",
+            "links": {
+                "linkedin": "linkedin.com/in/sujal-barwad-407444271",
+                "email": "sujal.barwad27@gmail.com",
+                "phone": "+91 9075619050"
+            }
+        }
+    ]
+}
