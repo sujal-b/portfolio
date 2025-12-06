@@ -3,12 +3,12 @@ import React from 'react';
 const ListCard = ({ item, isExpanded }) => {
     return (
         <div className="flex flex-col h-full w-full">
-            <h3 className="text-lg font-bold font-mono mb-3 uppercase tracking-wider border-b-2 border-black pb-1">{item.title}</h3>
+            <h3 className="text-lg font-bold font-mono mb-3 uppercase tracking-wider border-b-2 border-white/20 pb-1 text-neon-green">{item.title}</h3>
 
             <ul className={`space-y-2 ${isExpanded ? 'text-base' : 'text-sm'}`}>
                 {item.items.slice(0, isExpanded ? undefined : 4).map((listItem, i) => (
                     <li key={i} className="flex items-start">
-                        <span className="mr-2 opacity-50 font-mono">0{i + 1}</span>
+                        <span className="mr-2 text-neon-green font-mono">0{i + 1}</span>
                         <span className={isExpanded ? '' : 'line-clamp-1'}>{listItem}</span>
                     </li>
                 ))}

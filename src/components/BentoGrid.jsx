@@ -40,10 +40,8 @@ const BentoGrid = () => {
                 {grid_layout.map((item) => (
                     <div key={item.id} className={getColSpan(item.size)}>
                         <motion.div
-                            layoutId={item.id}
                             onClick={() => setSelectedId(item.id)}
-                            className="neo-card w-full h-full p-6 cursor-pointer flex flex-col justify-between overflow-hidden relative"
-                            whileHover={{ y: -4, boxShadow: '6px 6px 0px 0px rgba(0,0,0,1)' }}
+                            className="neo-card w-full h-full p-6 cursor-pointer flex flex-col justify-between overflow-hidden relative hover:-translate-y-1 transition-transform duration-300"
                             whileTap={{ scale: 0.98 }}
                         >
                             {renderCardContent(item, false)}
@@ -55,21 +53,30 @@ const BentoGrid = () => {
             {/* Expanded Modal Overlay */}
             <AnimatePresence>
                 {selectedId && (
-                    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm" onClick={() => setSelectedId(null)}>
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+                        onClick={() => setSelectedId(null)}
+                    >
                         <motion.div
-                            layoutId={selectedId}
-                            className="neo-card w-full max-w-3xl max-h-[90vh] overflow-y-auto p-8 bg-neo-bg relative"
+                            initial={{ scale: 0.9, opacity: 0, y: 20 }}
+                            animate={{ scale: 1, opacity: 1, y: 0 }}
+                            exit={{ scale: 0.9, opacity: 0, y: 20 }}
+                            transition={{ type: "spring", damping: 25, stiffness: 300 }}
+                            className="neo-card w-full max-w-3xl max-h-[90vh] overflow-y-auto p-8 bg-card-bg relative shadow-2xl border border-white/10"
                             onClick={(e) => e.stopPropagation()}
                         >
                             <button
                                 onClick={() => setSelectedId(null)}
-                                className="absolute top-4 right-4 p-2 bg-neo-black text-white hover:rotate-90 transition-transform"
+                                className="absolute top-4 right-4 p-2 bg-text-primary/10 hover:bg-text-primary/20 text-text-primary rounded-full transition-colors"
                             >
                                 ✕
                             </button>
                             {renderCardContent(grid_layout.find(i => i.id === selectedId), true)}
                         </motion.div>
-                    </div>
+                    </motion.div>
                 )}
             </AnimatePresence>
         </div>
