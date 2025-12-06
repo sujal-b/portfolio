@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+    darkMode: 'class',
     content: [
         "./index.html",
         "./src/**/*.{js,ts,jsx,tsx}",
@@ -7,14 +8,15 @@ export default {
     theme: {
         extend: {
             colors: {
-                'neo-bg': '#F5F5F0',
-                'neo-accent': '#00FF00',
-                'neo-black': '#000000',
-                'neo-white': '#FFFFFF',
+                'discord-bg': 'var(--bg-primary)',
+                'neon-green': 'var(--accent-color)',
+                'card-bg': 'var(--card-bg)',
+                'text-primary': 'var(--text-primary)',
+                'text-secondary': 'var(--text-secondary)',
             },
             boxShadow: {
-                'neo': '4px 4px 0px 0px rgba(0,0,0,1)',
-                'neo-hover': '6px 6px 0px 0px rgba(0,0,0,1)',
+                'glow': '0 0 10px rgba(57, 255, 20, 0.5), 0 0 20px rgba(57, 255, 20, 0.3)',
+                'glow-strong': '0 0 15px rgba(57, 255, 20, 0.7), 0 0 30px rgba(57, 255, 20, 0.5)',
             },
             fontFamily: {
                 'mono': ['"Space Mono"', 'monospace'],

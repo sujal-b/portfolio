@@ -2,8 +2,52 @@
 @config "../tailwind.config.js";
 
 @layer base {
+  :root {
+    /* Light Mode (Technical/Blueprint) */
+    --bg-primary: #f4f4f5;
+    --accent-color: #059669;
+    /* Emerald-600 */
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --text-primary: #18181b;
+    /* Zinc-900 */
+    --text-secondary: #52525b;
+    /* Zinc-600 */
+    --dot-color: #d4d4d8;
+    /* Zinc-300 for grid-like feel */
+    --glow-color: rgba(16, 185, 129, 0.05);
+  }
+
+  .dark {
+    /* Dark Mode (Discord Checkpoint) */
+    --bg-primary: #09090b;
+    --accent-color: #39FF14;
+    --card-bg: rgba(20, 20, 20, 0.8);
+    --text-primary: #FFFFFF;
+    --text-secondary: #a1a1aa;
+    --dot-color: #333;
+    --glow-color: rgba(57, 255, 20, 0.15);
+  }
+
   body {
-    @apply bg-neo-bg text-neo-black font-sans;
+    @apply bg-discord-bg text-text-primary font-sans min-h-screen relative overflow-x-hidden;
+    background-image:
+      radial-gradient(circle at 50% 0%, var(--glow-color) 0%, transparent 50%),
+      radial-gradient(var(--dot-color) 1px, transparent 1px);
+    background-size: 100% 100%, 30px 30px;
+    background-position: 0 0, 0 0;
+  }
+
+  /* Vignette - Dark mode only preferably, or very subtle in light */
+  .dark body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: radial-gradient(circle at center, transparent 0%, rgba(9, 9, 11, 0.6) 100%);
+    z-index: 0;
   }
 
   h1,
@@ -12,20 +56,61 @@
   h4,
   h5,
   h6 {
-    @apply font-mono font-bold;
+    @apply font-mono font-bold tracking-tight;
+  }
+
+  ::selection {
+    @apply bg-neon-green text-discord-bg;
   }
 }
 
 @layer components {
+
+  /* Glassmorphism Card (replacing neo-card) */
   .neo-card {
-    @apply border-4 border-neo-black shadow-neo bg-white transition-all duration-300;
+    @apply relative border border-white/10 bg-card-bg backdrop-blur-md rounded-xl transition-all duration-300 shadow-lg;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   }
 
   .neo-card:hover {
-    @apply -translate-y-1 shadow-neo-hover;
+    @apply border-neon-green shadow-glow -translate-y-1;
   }
 
-  .neo-card:active {
-    @apply scale-95 shadow-neo translate-y-0.5;
+  /* Helper for text content to ensure it sits above the vignette if needed, though vignette is pointer-events-none */
+  .content-layer {
+    @apply relative z-10;
   }
+}
+
+@keyframes sonar-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+.sonar-effect::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 9999px;
+  /* full rounded */
+  border: 1px solid var(--accent-color);
+  animation: sonar-pulse 2s infinite ease-out;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Pause sonar on hover */
+.sonar-effect:hover::before {
+  animation: none;
+  opacity: 0;
 }
