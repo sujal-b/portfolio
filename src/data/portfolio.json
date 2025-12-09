@@ -25,7 +25,7 @@
         {
             "id": "exp-1",
             "type": "experience",
-            "size": "2x1",
+            "size": "2x2",
             "title": "Data Analyst Intern",
             "organization": "Arista Systems Pvt. Ltd.",
             "date": "June 2025 - Aug 2025",
@@ -43,36 +43,38 @@
             ]
         },
         {
-            "id": "proj-1",
-            "type": "project",
-            "size": "1x2",
-            "title": "AI Data Quality & Automation",
-            "tags": [
-                "Celery",
-                "Redis",
-                "MLOps",
-                "CI/CD"
-            ],
-            "short_desc": "Scalable engine for auto-data cleaning.",
-            "detailed_content": [
-                "Designed a non-blocking data processing engine using Celery and Redis.",
-                "Created an AI Co-pilot for automated data quality recommendations.",
-                "Implemented a full MLOps lifecycle with CI/CD pipelines for frontend, backend, and background workers."
-            ]
-        },
-        {
-            "id": "proj-2",
-            "type": "project",
-            "size": "1x1",
-            "title": "Market Demand Forecast",
-            "tags": [
-                "Random Forest",
-                "Scikit-Learn"
-            ],
-            "short_desc": "Predictive modeling for Japanese Manufacturer.",
-            "detailed_content": [
-                "Used Japanese sales data to forecast Indian market demand.",
-                "Achieved 86% accuracy using Random Forest (R²=0.82), outperforming Logistic Regression."
+            "id": "featured-projects",
+            "type": "featured",
+            "size": "4x2",
+            "title": "Featured Projects",
+            "projects": [
+                {
+                    "title": "AI Data Quality & Automation",
+                    "tags": [
+                        "Celery",
+                        "Redis",
+                        "MLOps",
+                        "CI/CD"
+                    ],
+                    "short_desc": "Scalable engine for auto-data cleaning.",
+                    "detailed_content": [
+                        "Designed a non-blocking data processing engine using Celery and Redis.",
+                        "Created an AI Co-pilot for automated data quality recommendations.",
+                        "Implemented a full MLOps lifecycle with CI/CD pipelines."
+                    ]
+                },
+                {
+                    "title": "Market Demand Forecast",
+                    "tags": [
+                        "Random Forest",
+                        "Scikit-Learn"
+                    ],
+                    "short_desc": "Predictive modeling for Japanese Manufacturer.",
+                    "detailed_content": [
+                        "Used Japanese sales data to forecast Indian market demand.",
+                        "Achieved 86% accuracy using Random Forest (R²=0.82)."
+                    ]
+                }
             ]
         },
         {
@@ -101,15 +103,6 @@
             "icon": "🇩🇪"
         },
         {
-            "id": "widget-hardware",
-            "type": "widget",
-            "size": "1x1",
-            "title": "My Lab",
-            "content": "Local AI Inference Rig",
-            "specs": "RTX 3050 (4GB) | 16GB RAM",
-            "subtext": "Running Ollama & Stable Diffusion locally."
-        },
-        {
             "id": "education",
             "type": "list",
             "size": "2x1",
@@ -118,6 +111,15 @@
                 "B.Tech CS - Amity University (CGPA 9.26/10, Top 3%)",
                 "Higher Secondary - St. Paul School (67%)"
             ]
+        },
+        {
+            "id": "widget-hardware",
+            "type": "widget",
+            "size": "2x1",
+            "title": "My Lab",
+            "content": "Local AI Inference Rig",
+            "specs": "RTX 3050 (4GB) | 16GB RAM",
+            "subtext": "Running Ollama & Stable Diffusion locally."
         },
         {
             "id": "contact",
