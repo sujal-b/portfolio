@@ -6,7 +6,8 @@ import ExperienceCard from './cards/ExperienceCard';
 import ProjectCard from './cards/ProjectCard';
 import ListCard from './cards/ListCard';
 import WidgetCard from './cards/WidgetCard';
-import SocialCard from './cards/SocialCard'; // New, need to create
+import SocialCard from './cards/SocialCard';
+import FeaturedProjectsCard from './cards/FeaturedProjectsCard';
 
 const BentoGrid = () => {
     const { grid_layout } = portfolioData;
@@ -14,6 +15,7 @@ const BentoGrid = () => {
 
     const getColSpan = (size) => {
         switch (size) {
+            case '4x2': return 'col-span-1 md:col-span-4 row-span-2';
             case '2x2': return 'col-span-1 md:col-span-2 row-span-2';
             case '2x1': return 'col-span-1 md:col-span-2 row-span-1';
             case '1x2': return 'col-span-1 row-span-2';
@@ -26,6 +28,7 @@ const BentoGrid = () => {
             case 'hero': return <HeroCard item={item} isExpanded={isExpanded} />;
             case 'experience': return <ExperienceCard item={item} isExpanded={isExpanded} />;
             case 'project': return <ProjectCard item={item} isExpanded={isExpanded} />;
+            case 'featured': return <FeaturedProjectsCard item={item} isExpanded={isExpanded} />;
             case 'list': return <ListCard item={item} isExpanded={isExpanded} />;
             case 'widget': return <WidgetCard item={item} isExpanded={isExpanded} />;
             case 'social': return <SocialCard item={item} isExpanded={isExpanded} />;
@@ -65,7 +68,7 @@ const BentoGrid = () => {
                             animate={{ scale: 1, opacity: 1, y: 0 }}
                             exit={{ scale: 0.9, opacity: 0, y: 20 }}
                             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                            className="neo-card w-full max-w-3xl max-h-[90vh] overflow-y-auto p-8 bg-card-bg relative shadow-2xl border border-white/10"
+                            className="neo-card w-full max-w-6xl max-h-[90vh] overflow-y-auto p-8 bg-card-bg relative shadow-2xl border border-white/10"
                             onClick={(e) => e.stopPropagation()}
                         >
                             <button
