@@ -25,21 +25,41 @@
         {
             "id": "exp-1",
             "type": "experience",
-            "size": "2x2",
-            "title": "Data Analyst Intern",
-            "organization": "Arista Systems Pvt. Ltd.",
-            "date": "June 2025 - Aug 2025",
-            "tags": [
-                "Python",
-                "SQL",
-                "Tableau",
-                "Prophet"
-            ],
-            "short_desc": "Built real-time insight platforms for e-commerce.",
-            "detailed_content": [
-                "Developed a dynamic business monitoring dashboard for the e-commerce brand 'Kith' using Dash and Plotly.",
-                "Engineered a time-series forecasting model using Prophet, achieving 82% accuracy for sales predictions.",
-                "Optimized data pulls from multiple sources, reducing manual reporting time by 30%."
+            "size": "4x2",
+            "title": "Experience",
+            "experiences": [
+                {
+                    "role": "Data Analyst Intern",
+                    "organization": "Arista Systems Pvt. Ltd.",
+                    "date": "June 2025 - Aug 2025",
+                    "tags": [
+                        "Python",
+                        "SQL",
+                        "Tableau",
+                        "Prophet"
+                    ],
+                    "short_desc": "Built real-time insight platforms for e-commerce.",
+                    "detailed_content": [
+                        "Developed a dynamic business monitoring dashboard for the e-commerce brand 'Kith' using Dash and Plotly.",
+                        "Engineered a time-series forecasting model using Prophet, achieving 82% accuracy for sales predictions.",
+                        "Optimized data pulls from multiple sources, reducing manual reporting time by 30%."
+                    ]
+                },
+                {
+                    "role": "Data Science Lead",
+                    "organization": "Google Developer Groups / GDG",
+                    "date": "Present",
+                    "tags": [
+                        "Leadership",
+                        "Workshops",
+                        "AIML"
+                    ],
+                    "short_desc": "Conducting workshops, holding competitions and quizes.",
+                    "detailed_content": [
+                        "Conducting workshops, holding competitions and quizes.",
+                        "Cooperating with a whole core team of AIML for smooth operations."
+                    ]
+                }
             ]
         },
         {
