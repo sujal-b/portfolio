@@ -9,23 +9,18 @@ export default {
         extend: {
             colors: {
                 'discord-bg': 'var(--bg-primary)',
-                'neon-green': 'var(--accent-color)',
+                'accent': 'var(--accent-color)',
                 'card-bg': 'var(--card-bg)',
                 'text-primary': 'var(--text-primary)',
                 'text-secondary': 'var(--text-secondary)',
             },
             boxShadow: {
-                'glow': '0 0 10px rgba(57, 255, 20, 0.5), 0 0 20px rgba(57, 255, 20, 0.3)',
-                'glow-strong': '0 0 15px rgba(57, 255, 20, 0.7), 0 0 30px rgba(57, 255, 20, 0.5)',
+                'glow': '0 0 20px rgba(245, 158, 11, 0.25), 0 0 40px rgba(245, 158, 11, 0.15)',
             },
             fontFamily: {
-                'mono': ['"Space Mono"', 'monospace'],
-                'sans': ['Inter', 'sans-serif'],
+                'mono': ['"Space Grotesk"', 'monospace'],
+                'sans': ['"Archivo"', 'sans-serif'],
             },
-            borderWidth: {
-                '3': '3px',
-                '4': '4px',
-            }
         },
     },
     plugins: [],

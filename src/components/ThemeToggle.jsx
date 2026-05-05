@@ -34,10 +34,11 @@ const ThemeToggle = () => {
     return (
         <motion.button
             onClick={toggleTheme}
-            className="fixed top-4 right-4 z-50 p-2 rounded-full border border-black/10 dark:border-white/20 bg-white/80 dark:bg-card-bg backdrop-blur-sm shadow-lg text-text-primary sonar-effect hover:ring-2 hover:ring-neon-green transition-all"
+            className="fixed top-4 right-4 z-50 p-3 rounded-full border border-black/10 dark:border-white/20 bg-white/80 dark:bg-card-bg backdrop-blur-sm shadow-lg text-text-primary sonar-effect hover:ring-2 hover:ring-neon-green transition-all focus:outline-none focus:ring-2 focus:ring-neon-green min-w-[44px] min-h-[44px] flex items-center justify-center"
             whileTap={{ scale: 0.95 }}
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
+            aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
         >
             {isDark ? <Sun size={20} className="text-neon-green" /> : <Moon size={20} className="text-neon-green" />}
         </motion.button>

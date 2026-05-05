@@ -19,8 +19,8 @@
             "type": "hero",
             "size": "2x2",
             "title": "Hi, I'm Sujal.",
-            "subtitle": "I build systems that learn from data.",
-            "content": "CS Student with a 9.26 CGPA. Passionate about MLOps, Data Analytics, and Algorithmic Design."
+            "subtitle": "Driven technologist turning complex problems into elegant, scalable solutions.",
+            "content": "CS Student at Amity University (9.26 CGPA). AI/ML Lead at GDG. Data Analyst at Arista Systems."
         },
         {
             "id": "exp-1",
@@ -29,36 +29,37 @@
             "title": "Experience",
             "experiences": [
                 {
+                    "role": "AI/ML Lead",
+                    "organization": "Google Developer Groups (GDG) — Amity University Mumbai",
+                    "date": "Oct 2025 – Present",
+                    "tags": [
+                        "AI/ML",
+                        "Leadership",
+                        "Curriculum",
+                        "Mentoring"
+                    ],
+                    "short_desc": "Leading AI/ML vertical for GDG chapter, managing 250+ students across 3 offline events.",
+                    "detailed_content": [
+                        "Designed and delivered curriculum covering ML, GenAI, Data Science, and industrial techniques",
+                        "Managed 250+ students across 3 offline on-campus events — workshops on ML algorithms, data manipulation, and GenAI tool usage",
+                        "Mentored project teams building ML-powered applications; reviewed models for accuracy, fairness, and deployment readiness"
+                    ]
+                },
+                {
                     "role": "Data Analyst Intern",
                     "organization": "Arista Systems Pvt. Ltd.",
-                    "date": "June 2025 - Aug 2025",
+                    "date": "Jun 2025 – Aug 2025",
                     "tags": [
                         "Python",
                         "SQL",
                         "Tableau",
                         "Prophet"
                     ],
-                    "short_desc": "Built real-time insight platforms for e-commerce.",
+                    "short_desc": "Built filter-based analytics platform and time-series forecasting model achieving 82.6% accuracy.",
                     "detailed_content": [
-                        "Developed a dynamic business monitoring dashboard for the e-commerce brand 'Kith' using Dash and Plotly.",
-                        "Engineered a time-series forecasting model using Prophet, achieving 82% accuracy for sales predictions.",
-                        "Optimized data pulls from multiple sources, reducing manual reporting time by 30%."
-                    ]
-                },
-                {
-                    "role": "Data Science Lead",
-                    "organization": "Google Developer Groups / GDG",
-                    "date": "Present",
-                    "tags": [
-                        "Leadership",
-                        "Workshops",
-                        "AIML"
-                    ],
-                    "short_desc": "Led AIML initiatives, organized technical workshops, and directed competitive events.",
-                    "detailed_content": [
-                        "Spearheaded the planning and execution of technical workshops focused on Artificial Intelligence and Machine Learning.",
-                        "Organized and facilitated coding competitions and quizzes to foster an active developer community.",
-                        "Collaborated closely with the core AIML team to ensure smooth operations and high-quality events."
+                        "Built a filter-based analytics platform for real-time insight generation across multi-source data pipelines using Python & SQL",
+                        "Engineered a time-series forecasting model with Facebook Prophet for e-commerce sales prediction, achieving 82.6% accuracy",
+                        "Automated routine data pulls & reporting workflows, reducing manual report preparation time by ~30%"
                     ]
                 }
             ]
@@ -70,30 +71,45 @@
             "title": "Featured Projects",
             "projects": [
                 {
-                    "title": "AI Data Quality & Automation",
+                    "title": "Scalable Dense Passage Retrieval System",
                     "tags": [
-                        "Celery",
-                        "Redis",
-                        "MLOps",
-                        "CI/CD"
+                        "PyTorch",
+                        "Vector Quantization",
+                        "RAG",
+                        "Python"
                     ],
-                    "short_desc": "Scalable engine for auto-data cleaning.",
+                    "short_desc": "50x memory compression with 15ms query latency, 61.5% Recall@10.",
                     "detailed_content": [
-                        "Designed a non-blocking data processing engine using Celery and Redis.",
-                        "Created an AI Co-pilot for automated data quality recommendations.",
-                        "Implemented a full MLOps lifecycle with CI/CD pipelines."
+                        "Achieved 50x memory compression (4.6MB vs 230.7MB) in a dense passage retrieval system while maintaining 15ms query latency, enabling high-performance RAG deployment on resource-constrained edge devices",
+                        "Delivered high-precision retrieval pipeline achieving 61.5% Recall@10 with trade-off justified by a 50x reduction in infrastructure costs, enabling million-scale vector search on commodity hardware"
                     ]
                 },
                 {
-                    "title": "Market Demand Forecast",
+                    "title": "AI-Powered Data Quality & Automation Platform",
                     "tags": [
-                        "Random Forest",
-                        "Scikit-Learn"
+                        "Celery",
+                        "Redis",
+                        "AG Grid",
+                        "React"
                     ],
-                    "short_desc": "Predictive modeling for Japanese Manufacturer.",
+                    "short_desc": "AI diagnostic engine with non-blocking data processing for instantaneous analytics.",
                     "detailed_content": [
-                        "Used Japanese sales data to forecast Indian market demand.",
-                        "Achieved 86% accuracy using Random Forest (R²=0.82)."
+                        "Developed an AI-powered diagnostic engine that automated data preparation by integrating LLM to generate multiple context-aware treatment plans & intelligent data cleaning measures",
+                        "Designed a scalable non-blocking data processing engine with Celery and Redis, delivering instantaneous cached statistical analyses even for large datasets"
+                    ]
+                },
+                {
+                    "title": "BioVisuals — Molecular Structure using LLM",
+                    "tags": [
+                        "py3Dmol",
+                        "RDKit",
+                        "Plotly",
+                        "LLM"
+                    ],
+                    "short_desc": "Interactive 3D molecular visualization with LLM-generated biological annotations.",
+                    "detailed_content": [
+                        "Built an interactive 3D molecular visualization tool integrating LLM-generated biological annotations for protein/ligand structures, bridging computational biology and generative AI",
+                        "Enabling researchers to query and visualize protein-ligand interactions in real time"
                     ]
                 }
             ]
@@ -105,23 +121,34 @@
             "title": "Tech Stack",
             "items": [
                 "Python",
+                "PyTorch",
+                "Scikit-learn",
                 "SQL",
                 "Tableau",
-                "Hugging Face",
-                "OpenCV",
-                "Git",
                 "Pandas",
-                "OCI"
+                "NumPy",
+                "Docker",
+                "FastAPI",
+                "Redis",
+                "Celery",
+                "Azure",
+                "OCI",
+                "Git",
+                "OpenCV",
+                "RAG",
+                "MLOps"
             ]
         },
         {
-            "id": "widget-german",
-            "type": "widget",
-            "size": "1x1",
-            "title": "Learning",
-            "content": "German (Deutsch)",
-            "status": "A1/A2 Level",
-            "icon": "🇩🇪"
+            "id": "certifications",
+            "type": "list",
+            "size": "2x1",
+            "title": "Certifications",
+            "items": [
+                "IBM RAG and Agentic AI Professional - Coursera (2026)",
+                "Data Science with AI - Internshala (2025)",
+                "National Science Olympiad - IIT Bombay (2018)"
+            ]
         },
         {
             "id": "education",
@@ -129,18 +156,9 @@
             "size": "2x1",
             "title": "Education",
             "items": [
-                "B.Tech CS - Amity University (CGPA 9.26/10, Top 3%)",
-                "Higher Secondary - St. Paul School (67%)"
+                "B.Tech CS (AI/ML) - Amity University Mumbai (2023-2027, CGPA 9.26/10)",
+                "Higher Secondary - St. Paul School (2023)"
             ]
-        },
-        {
-            "id": "widget-hardware",
-            "type": "widget",
-            "size": "2x1",
-            "title": "My Lab",
-            "content": "Local AI Inference Rig",
-            "specs": "RTX 3050 (4GB) | 16GB RAM",
-            "subtext": "Running Ollama & Stable Diffusion locally."
         },
         {
             "id": "contact",
@@ -148,6 +166,8 @@
             "size": "2x1",
             "links": {
                 "linkedin": "linkedin.com/in/sujal-barwad-407444271",
+                "github": "github.com/sujal-b",
+                "leetcode": "leetcode.com/u/KaiSuke/",
                 "email": "sujal.barwad27@gmail.com",
                 "phone": "+91 9075619050"
             }

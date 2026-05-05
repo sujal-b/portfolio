@@ -9,6 +9,7 @@ const Card = ({ children, className, onClick, layoutId }) => {
             whileHover={{ y: -4 }}
             whileTap={{ scale: 0.95, y: 0 }}
             transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+            style={{ minHeight: '44px', minWidth: '44px' }}
         >
             {children}
         </motion.div>

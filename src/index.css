@@ -1,116 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 @config "../tailwind.config.js";
 
 @layer base {
   :root {
-    /* Light Mode (Technical/Blueprint) */
-    --bg-primary: #f4f4f5;
-    --accent-color: #059669;
-    /* Emerald-600 */
-    --card-bg: rgba(255, 255, 255, 0.95);
-    --text-primary: #18181b;
-    /* Zinc-900 */
-    --text-secondary: #52525b;
-    /* Zinc-600 */
-    --dot-color: #d4d4d8;
-    /* Zinc-300 for grid-like feel */
-    --glow-color: rgba(16, 185, 129, 0.05);
+    --bg-primary: #F5F5F0;
+    --accent-color: #D97706;
+    --card-bg: #FEFEFE;
+    --text-primary: #292524;
+    --text-secondary: #78716C;
+    --dot-color: #E7E5E4;
+    --glow-color: rgba(217, 119, 6, 0.08);
   }
 
   .dark {
-    /* Dark Mode (Discord Checkpoint) */
-    --bg-primary: #09090b;
-    --accent-color: #39FF14;
-    --card-bg: rgba(20, 20, 20, 0.8);
-    --text-primary: #FFFFFF;
-    --text-secondary: #a1a1aa;
-    --dot-color: #333;
-    --glow-color: rgba(57, 255, 20, 0.15);
+    --bg-primary: #1C1917;
+    --accent-color: #FBBF24;
+    --card-bg: #18181B;
+    --text-primary: #FAFAFA;
+    --text-secondary: #A1A1AA;
+    --dot-color: #27272A;
+    --glow-color: rgba(59, 130, 246, 0.12);
   }
 
   body {
-    @apply bg-discord-bg text-text-primary font-sans min-h-screen relative overflow-x-hidden;
+    @apply bg-discord-bg text-text-primary font-sans antialiased;
     background-image:
-      radial-gradient(circle at 50% 0%, var(--glow-color) 0%, transparent 50%),
+      radial-gradient(circle at 50% 0%, var(--glow-color) 0%, transparent 60%),
       radial-gradient(var(--dot-color) 1px, transparent 1px);
-    background-size: 100% 100%, 30px 30px;
-    background-position: 0 0, 0 0;
+    background-size: 100% 100%, 40px 40px;
   }
 
-  /* Vignette - Dark mode only preferably, or very subtle in light */
   .dark body::after {
     content: "";
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0; width: 100%; height: 100%;
     pointer-events: none;
-    background: radial-gradient(circle at center, transparent 0%, rgba(9, 9, 11, 0.6) 100%);
+    background: radial-gradient(circle at center, transparent 0%, rgba(9, 9, 11, 0.5) 100%);
     z-index: 0;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  h1, h2, h3, h4, h5, h6 {
     @apply font-mono font-bold tracking-tight;
   }
 
   ::selection {
-    @apply bg-neon-green text-discord-bg;
+    @apply bg-accent text-white;
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 }
 
 @layer components {
-
-  /* Glassmorphism Card (replacing neo-card) */
   .neo-card {
-    @apply relative border border-white/10 bg-card-bg backdrop-blur-md rounded-xl transition-all duration-300 shadow-lg;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    @apply relative bg-card-bg rounded-2xl border border-zinc-200/60 dark:border-zinc-800 transition-all duration-300 shadow-sm;
   }
 
   .neo-card:hover {
-    @apply border-neon-green shadow-glow -translate-y-1;
+    @apply shadow-lg border-accent/50 -translate-y-1;
   }
 
-  /* Helper for text content to ensure it sits above the vignette if needed, though vignette is pointer-events-none */
   .content-layer {
     @apply relative z-10;
   }
-}
 
-@keyframes sonar-pulse {
-  0% {
-    transform: scale(1);
-    opacity: 1;
-  }
-
-  100% {
-    transform: scale(3);
-    opacity: 0;
+  .tag {
+    @apply px-3 py-1 text-xs font-medium rounded-full bg-accent/10 text-accent border border-accent/20;
   }
 }
 
-.sonar-effect::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border-radius: 9999px;
-  /* full rounded */
-  border: 1px solid var(--accent-color);
-  animation: sonar-pulse 2s infinite ease-out;
-  pointer-events: none;
-  z-index: -1;
+@layer utilities {
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 }
 
-/* Pause sonar on hover */
-.sonar-effect:hover::before {
-  animation: none;
-  opacity: 0;
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  html {
+    scroll-behavior: auto;
+  }
 }
