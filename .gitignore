@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Tooling
+graphify-out/
+.opencode/
+docs/
+PORTFOLIO_SRS.md
+design-system/
