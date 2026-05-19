@@ -18,15 +18,92 @@ const rand = (min, max) => Math.random() * (max - min) + min;
 /* ======== PAGE LOADER ======== */
 (function initLoader() {
   const loader = document.getElementById('loader');
+  const barFill = document.getElementById('loaderBarFill');
+  const percentEl = document.getElementById('loaderPercent');
   if (!loader) return;
-  window.addEventListener('load', () => {
-    setTimeout(() => {
+
+  let progress = 0;
+  const statusTexts = ['Initializing experience', 'Loading assets', 'Preparing interface', 'Almost ready'];
+
+  function tick() {
+    if (progress >= 100) {
       loader.classList.add('hidden');
       document.body.style.overflow = '';
-    }, 600);
+      startHeroAnimation();
+      return;
+    }
+    const increment = Math.random() * 8 + 2;
+    progress = Math.min(progress + increment, 100);
+    barFill.style.width = progress + '%';
+    percentEl.textContent = Math.floor(progress) + '%';
+
+    const statusIndex = Math.min(Math.floor(progress / 30), statusTexts.length - 1);
+    const statusEl = loader.querySelector('.loader-status');
+    if (statusEl) statusEl.textContent = statusTexts[statusIndex];
+
+    setTimeout(tick, Math.random() * 200 + 120);
+  }
+
+  window.addEventListener('load', () => {
+    setTimeout(tick, 300);
   });
   document.body.style.overflow = 'hidden';
 })();
+
+/* ======== HERO LETTER ANIMATION ======== */
+function startHeroAnimation() {
+  const title = document.getElementById('heroTitle');
+  const subtitle = document.getElementById('heroSubtitle');
+  const desc = document.getElementById('heroDesc');
+  if (!title) return;
+
+  function splitChars(el) {
+    const text = el.textContent;
+    el.innerHTML = '';
+    [...text].forEach((char) => {
+      const span = document.createElement('span');
+      span.className = 'char';
+      span.textContent = char === ' ' ? '\u00A0' : char;
+      el.appendChild(span);
+    });
+  }
+
+  splitChars(title);
+  if (subtitle) splitChars(subtitle);
+  if (desc) splitChars(desc);
+
+  const ease = 'cubic-bezier(0.16, 1, 0.3, 1)';
+
+  function animateChars(els, delay, charDelay, dur) {
+    els.forEach((span, i) => {
+      span.style.transition = `opacity ${dur}ms ${ease}, filter ${dur}ms ${ease}, transform ${dur}ms ${ease}`;
+      span.style.transitionDelay = `${delay + i * charDelay}ms`;
+    });
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        els.forEach(span => {
+          span.style.opacity = '1';
+          span.style.filter = 'blur(0)';
+          span.style.transform = 'translateY(0)';
+        });
+      });
+    });
+  }
+
+  const titleChars = title.querySelectorAll('.char');
+  animateChars(titleChars, 0, 30, 500);
+
+  if (subtitle) {
+    const subChars = subtitle.querySelectorAll('.char');
+    animateChars(subChars, titleChars.length * 30 + 60, 25, 400);
+  }
+
+  if (desc) {
+    const subLen = subtitle ? subtitle.querySelectorAll('.char').length : 0;
+    const descChars = desc.querySelectorAll('.char');
+    animateChars(descChars, (titleChars.length + subLen) * 25 + 120, 10, 300);
+  }
+}
 
 /* ======== CUSTOM CURSOR ======== */
 (function initCursor() {
@@ -298,85 +375,190 @@ const rand = (min, max) => Math.random() * (max - min) + min;
     [4, 6], [8, 11], [13, 16],
   ];
 
+  const adjacency = skills.map((_, i) =>
+    connections.filter(c => c[0] === i || c[1] === i).map(c => c[0] === i ? c[1] : c[0])
+  );
+
   const groupColors = ['#ffffff', '#9ba1a5', '#707070'];
   let nodes = [];
   let animProgress = 0;
   let isVisible = false;
   let dpr = window.devicePixelRatio || 1;
+  let w = 0, h = 0;
+
+  let dragIdx = -1;
+  let dragOffsetX = 0, dragOffsetY = 0;
+  const springStrength = 0.08;
+  const springDamping = 0.85;
+  const hitRadius = 'ontouchstart' in window ? 40 : 28;
+  const maxPullDist = 80;
 
   function resize() {
     const rect = canvas.parentElement.getBoundingClientRect();
-    canvas.width = rect.width * dpr;
-    canvas.height = rect.height * dpr;
-    canvas.style.width = rect.width + 'px';
-    canvas.style.height = rect.height + 'px';
-    ctx.scale(dpr, dpr);
+    w = rect.width;
+    h = rect.height;
+    canvas.width = w * dpr;
+    canvas.height = h * dpr;
+    canvas.style.width = w + 'px';
+    canvas.style.height = h + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     nodes = skills.map(s => ({
-      x: s.x * rect.width,
-      y: s.y * rect.height,
+      x: s.x * w,
+      y: s.y * h,
+      homeX: s.x * w,
+      homeY: s.y * h,
+      vx: 0, vy: 0,
       name: s.name,
       group: s.group,
     }));
   }
 
   function draw() {
-    const rect = canvas.parentElement.getBoundingClientRect();
-    ctx.clearRect(0, 0, rect.width, rect.height);
+    ctx.clearRect(0, 0, w, h);
     const p = Math.min(animProgress, 1);
 
-    // Connections
     connections.forEach(([a, b], i) => {
       const cp = Math.max(0, Math.min(1, (p - i * 0.025) * 2.5));
       if (cp <= 0 || !nodes[a] || !nodes[b]) return;
+      const isHighlighted = dragIdx >= 0 && (a === dragIdx || b === dragIdx);
       ctx.beginPath();
       ctx.moveTo(nodes[a].x, nodes[a].y);
       ctx.lineTo(
         nodes[a].x + (nodes[b].x - nodes[a].x) * cp,
         nodes[a].y + (nodes[b].y - nodes[a].y) * cp
       );
-      ctx.strokeStyle = `rgba(255, 255, 255, ${0.06 * cp})`;
-      ctx.lineWidth = 0.8;
+      ctx.strokeStyle = isHighlighted
+        ? `rgba(255, 255, 255, ${0.18 * cp})`
+        : `rgba(255, 255, 255, ${0.06 * cp})`;
+      ctx.lineWidth = isHighlighted ? 1.2 : 0.8;
       ctx.stroke();
     });
 
-    // Nodes
     nodes.forEach((node, i) => {
       const np = Math.max(0, Math.min(1, (p - i * 0.035) * 2));
       if (np <= 0) return;
+      const isDragged = i === dragIdx;
+      const isConnected = dragIdx >= 0 && adjacency[dragIdx].includes(i);
+      const radius = isDragged ? 22 : (isConnected ? 18 : 14);
+      const dotSize = isDragged ? 4 : (isConnected ? 3 : 2.5);
 
-      // Glow
-      const gradient = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, 20);
-      gradient.addColorStop(0, `rgba(255, 255, 255, ${0.08 * np})`);
-      gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+      const gradient = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, radius);
+      if (isDragged) {
+        gradient.addColorStop(0, 'rgba(255, 255, 255, 0.18)');
+        gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+      } else if (isConnected) {
+        gradient.addColorStop(0, 'rgba(255, 255, 255, 0.12)');
+        gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+      } else {
+        gradient.addColorStop(0, `rgba(255, 255, 255, ${0.08 * np})`);
+        gradient.addColorStop(1, 'rgba(255, 255, 255, 0)');
+      }
       ctx.beginPath();
-      ctx.arc(node.x, node.y, 20, 0, Math.PI * 2);
+      ctx.arc(node.x, node.y, radius, 0, Math.PI * 2);
       ctx.fillStyle = gradient;
       ctx.fill();
 
-      // Dot
       ctx.beginPath();
-      ctx.arc(node.x, node.y, 2.5 * np, 0, Math.PI * 2);
+      ctx.arc(node.x, node.y, dotSize * np, 0, Math.PI * 2);
       ctx.fillStyle = groupColors[node.group];
-      ctx.globalAlpha = np;
+      ctx.globalAlpha = isDragged ? 1 : np;
       ctx.fill();
 
-      // Label
-      ctx.font = '10px "Fragment Mono", monospace';
+      ctx.font = isDragged ? '11px "Fragment Mono", monospace' : '10px "Fragment Mono", monospace';
       ctx.fillStyle = groupColors[node.group];
       ctx.textAlign = 'center';
-      ctx.globalAlpha = np * 0.8;
-      ctx.fillText(node.name, node.x, node.y - 14);
+      ctx.globalAlpha = isDragged ? 1 : np * 0.8;
+      ctx.fillText(node.name, node.x, node.y - (isDragged ? 18 : 14));
       ctx.globalAlpha = 1;
     });
   }
 
+  function updatePhysics() {
+    if (dragIdx < 0) return;
+    const dragged = nodes[dragIdx];
+    adjacency[dragIdx].forEach(ni => {
+      const node = nodes[ni];
+      const dx = dragged.x - node.homeX;
+      const dy = dragged.y - node.homeY;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      const pull = Math.min(dist, maxPullDist);
+      const angle = Math.atan2(dy, dx);
+      const targetX = node.homeX + Math.cos(angle) * pull * springStrength * 4;
+      const targetY = node.homeY + Math.sin(angle) * pull * springStrength * 4;
+      node.vx += (targetX - node.x) * springStrength;
+      node.vy += (targetY - node.y) * springStrength;
+      node.vx *= springDamping;
+      node.vy *= springDamping;
+      node.x += node.vx;
+      node.y += node.vy;
+    });
+  }
+
+  function returnToHome() {
+    nodes.forEach(node => {
+      if (dragIdx >= 0 && nodes[dragIdx] === node) return;
+      node.vx += (node.homeX - node.x) * 0.04;
+      node.vy += (node.homeY - node.y) * 0.04;
+      node.vx *= 0.88;
+      node.vy *= 0.88;
+      node.x += node.vx;
+      node.y += node.vy;
+    });
+  }
+
   function animate() {
-    if (isVisible && animProgress < 1.5) {
-      animProgress += 0.012;
-    }
+    if (isVisible && animProgress < 1.5) animProgress += 0.012;
+    updatePhysics();
+    if (dragIdx < 0) returnToHome();
     draw();
     requestAnimationFrame(animate);
   }
+
+  function getPointerPos(e) {
+    const rect = canvas.getBoundingClientRect();
+    return { x: e.clientX - rect.left, y: e.clientY - rect.top };
+  }
+
+  function hitTest(px, py) {
+    for (let i = 0; i < nodes.length; i++) {
+      const dx = px - nodes[i].x;
+      const dy = py - nodes[i].y;
+      if (dx * dx + dy * dy < hitRadius * hitRadius) return i;
+    }
+    return -1;
+  }
+
+  function onPointerDown(e) {
+    const pos = getPointerPos(e);
+    const idx = hitTest(pos.x, pos.y);
+    if (idx < 0) return;
+    dragIdx = idx;
+    dragOffsetX = nodes[idx].x - pos.x;
+    dragOffsetY = nodes[idx].y - pos.y;
+    canvas.style.cursor = 'grabbing';
+    e.preventDefault();
+  }
+
+  function onPointerMove(e) {
+    const pos = getPointerPos(e);
+    if (dragIdx >= 0) {
+      nodes[dragIdx].x = pos.x + dragOffsetX;
+      nodes[dragIdx].y = pos.y + dragOffsetY;
+      nodes[dragIdx].vx = 0;
+      nodes[dragIdx].vy = 0;
+    } else {
+      canvas.style.cursor = hitTest(pos.x, pos.y) >= 0 ? 'grab' : 'default';
+    }
+  }
+
+  function onPointerUp() {
+    dragIdx = -1;
+    canvas.style.cursor = 'default';
+  }
+
+  canvas.addEventListener('pointerdown', onPointerDown);
+  window.addEventListener('pointermove', onPointerMove);
+  window.addEventListener('pointerup', onPointerUp);
 
   resize();
   animate();
