@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="red">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sujal Barwad — AI Engineer</title>
+  <meta name="description" content="Sujal Barwad — AI Engineer portfolio.">
+  <meta name="theme-color" content="#EB0004">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ======== GOOEY CURSOR SVG FILTER ======== -->
+  <svg id="cursor-svg" xmlns="http://www.w3.org/2000/svg" version="1.1" width="800">
+    <defs>
+      <filter id="goo">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
+        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 35 -15" result="goo" />
+        <feComposite in="SourceGraphic" in2="goo" operator="atop" />
+      </filter>
+    </defs>
+  </svg>
+  <div id="cursor" class="Cursor"></div>
+  <div class="cursor-circle" aria-hidden="true"><span>view<br>project</span></div>
+
+  <!-- ======== NOISE SVG FILTER & OVERLAY ======== -->
+  <svg id="noise-svg" xmlns="http://www.w3.org/2000/svg" version="1.1" style="display: none;">
+    <defs>
+      <filter id="noiseFilter">
+        <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" />
+      </filter>
+    </defs>
+  </svg>
+  <div class="noise-overlay" aria-hidden="true"></div>
+
+  <!-- ======== LOADER ======== -->
+  <div class="loading-container" id="loader">
+    <div class="loading-bar"><div class="loading-bar-fill" id="loaderBarFill"></div></div>
+    <span class="loading-status" id="loaderStatus">LOADING</span>
+  </div>
+
+  <!-- ======== HEADER / NAV ======== -->
+  <header class="header" role="banner">
+    <a href="#home" class="nav-logo-container hover-text-parent" aria-label="Sujal Barwad Home">
+      <svg class="kala-vector" viewBox="0 0 86 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="'Outfit', sans-serif" font-size="110" font-weight="900" fill="var(--cf)">S</text>
+      </svg>
+      <p class="nav-logo-text">
+        <span>Sujal</span>
+        <span>[AI Engineer]</span>
+      </p>
+      <p class="hover-text">sujal.dev/</p>
+    </a>
+
+    <div class="header-nav-right">
+      <button class="themeToggle" id="themeToggle" aria-label="Toggle theme">
+        <span class="themeToggle-circle"></span>
+      </button>
+      <button class="nav-toggle-btn hover-text-parent" id="perspectiveToggle" aria-label="Toggle 3D perspective view" aria-pressed="false">
+        <span class="nav-toggle-btn-label">3D</span>
+        <span class="hover-text">perspective</span>
+      </button>
+      <button class="nav-toggle-btn hover-text-parent" id="menuToggle" aria-label="Open menu">
+        <span class="nav-toggle-btn-label">Menu</span>
+        <span class="hover-text">explore</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ======== SMOOTH SCROLL WRAPPER ======== -->
+  <div id="smooth-wrapper">
+    <div id="smooth-content">
+
+      <!-- ======== HERO / HOME ======== -->
+      <section class="section home perspective-wrapper" id="home">
+        <hr class="bg-hr bg-hr-h bg-hr-h-1">
+        <hr class="bg-hr bg-hr-v bg-hr-v-1">
+        <div class="section-bg-field" aria-hidden="true"></div>
+
+
+        <div class="home-1">
+          <div class="home-kala-logo-container">
+            <h1 class="home-kala-logo" aria-label="Sujal Barwad">
+              <span class="kala-letter">S</span><span class="kala-letter">U</span><span class="kala-letter">J</span><span class="kala-letter">A</span><span class="kala-letter">L</span>
+            </h1>
+          </div>
+        </div>
+
+        <div class="home-2">
+          <div class="home-2-left">
+            <h2 class="hero-heading">
+              <span>AI</span>
+              <span>Engineer.</span>
+            </h2>
+          </div>
+        </div>
+
+        <div class="home-3">
+          <a href="#projects" class="home-cta hover-text-parent">
+            <span>View Projects</span>
+            <svg class="right-arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M8.09 1.67L15.39 8.82L0 8.82V11.18L15.39 11.18L8.09 18.33L9.79 20L20 10L9.79 0L8.09 1.67Z"/>
+            </svg>
+          </a>
+          <a href="#about" class="home-cta hover-text-parent">
+            <span>About Me</span>
+            <svg class="right-arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M8.09 1.67L15.39 8.82L0 8.82V11.18L15.39 11.18L8.09 18.33L9.79 20L20 10L9.79 0L8.09 1.67Z"/>
+            </svg>
+          </a>
+          <a href="#contact" class="home-cta hover-text-parent">
+            <span>Start a Project</span>
+            <svg class="right-arrow" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+              <path d="M8.09 1.67L15.39 8.82L0 8.82V11.18L15.39 11.18L8.09 18.33L9.79 20L20 10L9.79 0L8.09 1.67Z"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- ======== HERO PROFILE CARD ======== -->
+        <div class="hero-profile-card perspective-hover-container" data-cursor="hover">
+          <div class="hero-profile-glow" aria-hidden="true"></div>
+          <div class="hero-profile-frame perspective-hover-element">
+            <img class="hero-profile-img" src="assets/profile.jpg" alt="Sujal Barwad Profile" loading="eager">
+            <span class="hero-profile-label">[SUJAL_BARWAD.SYS]</span>
+          </div>
+        </div>
+
+        <div class="scroll-hint-loading active">
+          <span id="scroll-hint-bar">
+            <hr class="scroll-hint-bar-fill">
+          </span>
+          <span class="scroll-hint-label">SCROLL</span>
+        </div>
+      </section>
+
+      <!-- ======== PROJECTS (HORIZONTAL SCROLL) ======== -->
+      <section class="projects-section section perspective-wrapper" id="projects">
+        <div class="section-bg-field" aria-hidden="true"></div>
+        <h2 class="heading">
+          <span>SELECTED</span>
+          <span>PROJECTS</span>
+        </h2>
+
+        <div class="projects-container-wrapper" id="projectsContainer">
+          <div class="projects-container">
+
+            <article class="project" data-cursor="view">
+              <a href="#" class="project-preview-wrapper">
+                <img class="project-preview" src="assets/screen.png" alt="ML Systems" loading="lazy">
+                <div class="project-preview-num">01</div>
+              </a>
+              <a href="#" class="project-info">
+                <p class="project-info-caption">ML Systems</p>
+                <h3 class="project-info-heading">Scalable Dense Passage Retrieval</h3>
+                <p class="project-description">
+                  Achieved 50x memory compression in a dense passage retrieval system while maintaining 15ms query latency, enabling high-performance RAG deployment on edge devices.
+                </p>
+                <p class="project-location">Remote · 2026</p>
+              </a>
+            </article>
+
+            <article class="project" data-cursor="view">
+              <a href="#" class="project-preview-wrapper">
+                <img class="project-preview" src="assets/datacraft.png" alt="DataCraft AI" loading="lazy">
+                <div class="project-preview-num">02</div>
+              </a>
+              <a href="#" class="project-info">
+                <p class="project-info-caption">AI Automation</p>
+                <h3 class="project-info-heading">DataCraft: AI-Powered Quality</h3>
+                <p class="project-description">
+                  Developed an AI-powered diagnostic engine that automated data preparation by integrating LLMs to generate context-aware treatment plans and intelligent cleaning measures.
+                </p>
+                <p class="project-location">Mumbai, IN · 2025</p>
+              </a>
+            </article>
+
+            <article class="project" data-cursor="view">
+              <a href="https://github.com/sujal-b/Solidus" target="_blank" class="project-preview-wrapper project-preview-svg-wrapper">
+                <!-- Interactive SVG Architecture Diagram -->
+                <svg class="project-preview-svg" viewBox="0 0 400 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <!-- Definitions for gradients and filters -->
+                  <defs>
+                    <linearGradient id="solidus-grad-cf" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="var(--cf)" />
+                      <stop offset="100%" stop-color="rgba(255,255,255,0.05)" />
+                    </linearGradient>
+                    <linearGradient id="solidus-grad-cf2" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stop-color="var(--cf2)" />
+                      <stop offset="100%" stop-color="rgba(255,255,255,0.05)" />
+                    </linearGradient>
+                    <filter id="svg-neon-glow" x="-20%" y="-20%" width="140%" height="140%">
+                      <feGaussianBlur stdDeviation="4" result="blur" />
+                      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                    </filter>
+                  </defs>
+
+                  <!-- Background grid & scanning line -->
+                  <rect width="100%" height="100%" fill="#040406" />
+                  <path d="M 0 30 L 400 30 M 0 60 L 400 60 M 0 90 L 400 90 M 0 120 L 400 120 M 0 150 L 400 150 M 0 180 L 400 180 M 0 210 L 400 210" stroke="rgba(255,255,255,0.02)" stroke-width="1" />
+                  <path d="M 50 0 L 50 240 M 100 0 L 100 240 M 150 0 L 150 240 M 200 0 L 200 240 M 250 0 L 250 240 M 300 0 L 300 240 M 350 0 L 350 240" stroke="rgba(255,255,255,0.02)" stroke-width="1" />
+                  <line x1="0" y1="0" x2="400" y2="0" stroke="var(--cf)" stroke-width="1.5" class="svg-scan-line" opacity="0.4" />
+
+                  <!-- Calibration Marks -->
+                  <path d="M 5 10 L 15 10 M 10 5 L 10 15" stroke="rgba(255,255,255,0.15)" stroke-width="1" />
+                  <path d="M 385 230 L 395 230 M 390 225 L 390 235" stroke="rgba(255,255,255,0.15)" stroke-width="1" />
+                  <text x="390" y="20" font-family="var(--f-mono)" font-size="6" fill="var(--tx3)" text-anchor="end">[SYS.ACTIVE]</text>
+                  <text x="10" y="230" font-family="var(--f-mono)" font-size="6" fill="var(--tx3)">[SEC_FLOW.03]</text>
+
+                  <!-- Symmetrical Circuit lines -->
+                  <path class="svg-flow-path" d="M 115 110 L 130 110 L 130 60 L 150 60" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" />
+                  <path class="svg-flow-path" d="M 115 110 L 130 110 L 130 160 L 150 160" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" />
+                  <path class="svg-flow-path" d="M 250 60 L 270 60 L 270 110 L 285 110" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" />
+                  <path class="svg-flow-path" d="M 250 160 L 270 160 L 270 110 L 285 110" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" />
+
+                  <!-- Glowing SVG particles flowing along paths -->
+                  <circle r="3" fill="var(--cf)" filter="url(#svg-neon-glow)">
+                    <animateMotion dur="2.8s" repeatCount="indefinite" path="M 115 110 L 130 110 L 130 60 L 150 60" />
+                  </circle>
+                  <circle r="3" fill="var(--cf2)" filter="url(#svg-neon-glow)">
+                    <animateMotion dur="2.8s" repeatCount="indefinite" path="M 115 110 L 130 110 L 130 160 L 150 160" />
+                  </circle>
+                  <circle r="3" fill="var(--cf2)" filter="url(#svg-neon-glow)">
+                    <animateMotion dur="2.8s" repeatCount="indefinite" path="M 250 60 L 270 60 L 270 110 L 285 110" />
+                  </circle>
+                  <circle r="3" fill="var(--cf)" filter="url(#svg-neon-glow)">
+                    <animateMotion dur="2.8s" repeatCount="indefinite" path="M 250 160 L 270 160 L 270 110 L 285 110" />
+                  </circle>
+
+                  <!-- Node 1: TEST RUNS -->
+                  <g class="svg-node" id="svg-node-runs">
+                    <rect x="25" y="80" width="90" height="60" rx="4" fill="rgba(255,255,255,0.01)" stroke="url(#solidus-grad-cf)" stroke-width="1" />
+                    <rect x="29" y="84" width="82" height="52" rx="2" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="2 2" />
+                    <circle cx="37" cy="94" r="2" fill="var(--cf)" class="svg-led-blink" />
+                    <text x="44" y="96" font-family="var(--f-mono)" font-size="6" fill="var(--tx3)">[NODE_01]</text>
+                    <text x="70" y="112" font-family="var(--f-mono)" font-size="8" font-weight="600" fill="var(--tx)" text-anchor="middle">TEST RUNS</text>
+                    <text x="70" y="125" font-family="var(--f-mono)" font-size="6" fill="var(--cf)" text-anchor="middle">JUnit / JSON</text>
+                  </g>
+
+                  <!-- Node 2: HISTORY STORE -->
+                  <g class="svg-node" id="svg-node-store">
+                    <rect x="150" y="30" width="100" height="60" rx="4" fill="rgba(255,255,255,0.01)" stroke="url(#solidus-grad-cf2)" stroke-width="1" />
+                    <rect x="154" y="34" width="92" height="52" rx="2" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="2 2" />
+                    <circle cx="162" cy="44" r="2" fill="var(--cf2)" class="svg-led-blink" />
+                    <text x="169" y="46" font-family="var(--f-mono)" font-size="6" fill="var(--tx3)">[NODE_02]</text>
+                    <text x="200" y="62" font-family="var(--f-mono)" font-size="8" font-weight="600" fill="var(--tx)" text-anchor="middle">HISTORY</text>
+                    <text x="200" y="75" font-family="var(--f-mono)" font-size="6" fill="var(--tx2)" text-anchor="middle">Local JSON Store</text>
+                  </g>
+
+                  <!-- Node 3: FLAKE ENGINE -->
+                  <g class="svg-node" id="svg-node-detector">
+                    <rect x="150" y="130" width="100" height="60" rx="4" fill="rgba(255,255,255,0.01)" stroke="url(#solidus-grad-cf)" stroke-width="1" />
+                    <rect x="154" y="134" width="92" height="52" rx="2" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="2 2" />
+                    <circle cx="162" cy="144" r="2" fill="var(--cf)" class="svg-led-blink" />
+                    <text x="169" y="146" font-family="var(--f-mono)" font-size="6" fill="var(--tx3)">[NODE_03]</text>
+                    <text x="200" y="162" font-family="var(--f-mono)" font-size="8" font-weight="600" fill="var(--tx)" text-anchor="middle">DETECTOR</text>
+                    <text x="200" y="175" font-family="var(--f-mono)" font-size="6" fill="var(--cf2)" text-anchor="middle">Pass-Rate Engine</text>
+                  </g>
+
+                  <!-- Node 4: CI QUARANTINE -->
+                  <g class="svg-node" id="svg-node-ci">
+                    <rect x="285" y="80" width="95" height="60" rx="4" fill="rgba(255,255,255,0.01)" stroke="url(#solidus-grad-cf2)" stroke-width="1" />
+                    <rect x="289" y="84" width="87" height="52" rx="2" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1" stroke-dasharray="2 2" />
+                    <circle cx="297" cy="94" r="2" fill="var(--cf2)" class="svg-led-blink" />
+                    <text x="304" y="96" font-family="var(--f-mono)" font-size="6" fill="var(--tx3)">[NODE_04]</text>
+                    <text x="332" y="112" font-family="var(--f-mono)" font-size="8" font-weight="600" fill="var(--tx)" text-anchor="middle">QUARANTINE</text>
+                    <text x="332" y="125" font-family="var(--f-mono)" font-size="6" fill="var(--cf)" text-anchor="middle">GitHub Actions</text>
+                  </g>
+                </svg>
+                <div class="project-preview-num">03</div>
+              </a>
+              <a href="https://github.com/sujal-b/Solidus" target="_blank" class="project-info">
+                <p class="project-info-caption">Developer Tools</p>
+                <h3 class="project-info-heading">Solidus: CI Flake Quarantine</h3>
+                <p class="project-description">
+                  Developed a CI-native test analysis CLI that automatically detects and quarantines flaky tests using statistical pass-rate analysis of historical run logs, eliminating false-positive CI failures.
+                </p>
+                <p class="project-location">GitHub · 2026</p>
+              </a>
+            </article>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ======== EXPERIENCE (TELEMETRY MONITOR) ======== -->
+      <section class="section experience-section perspective-wrapper" id="experience">
+        <div class="section-bg-field" aria-hidden="true"></div>
+        
+        <h2 class="heading">
+          <span>CAREER</span>
+          <span>OPTIMIZATION</span>
+        </h2>
+
+        <div class="telemetry-console">
+          <!-- Left: Telemetry Dashboard -->
+          <div class="telemetry-dashboard">
+            <div class="dashboard-header">
+              <span class="panel-tag">[SYS.MONITOR // RUN_METRICS]</span>
+              <div class="dashboard-stats">
+                <div class="stat-box">
+                  <span class="stat-lbl">GPU_LOAD</span>
+                  <span class="stat-val" id="gpu-load">98.4%</span>
+                </div>
+                <div class="stat-box">
+                  <span class="stat-lbl">OPTIMIZER</span>
+                  <span class="stat-val">ADAMW</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="chart-container">
+              <svg class="telemetry-chart" viewBox="0 0 800 350" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- SVG Filters for Glow -->
+                <defs>
+                  <filter id="neon-glow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="5" result="blur" />
+                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                  </filter>
+                </defs>
+
+                <!-- Grid lines -->
+                <line x1="50" y1="50" x2="750" y2="50" stroke="var(--grid-lines)" stroke-dasharray="4 4" />
+                <line x1="50" y1="150" x2="750" y2="150" stroke="var(--grid-lines)" stroke-dasharray="4 4" />
+                <line x1="50" y1="250" x2="750" y2="250" stroke="var(--grid-lines)" stroke-dasharray="4 4" />
+                
+                <!-- Loss Curve Path -->
+                <path id="loss-path" d="M 100 80 C 300 120, 450 210, 700 290" stroke="var(--cf)" stroke-width="2" filter="url(#neon-glow)" />
+                
+                <!-- Vertical Scrub Bar -->
+                <line id="scrub-line" x1="200" y1="30" x2="200" y2="320" stroke="var(--cf2)" stroke-width="2" />
+                
+                <!-- Interactive Nodes -->
+                <!-- Position 1 (Arista Intern) -->
+                <circle class="chart-node" id="node-0" cx="200" cy="100" r="7" fill="var(--bg)" stroke="var(--cf)" stroke-width="2" data-index="0" />
+                <!-- Position 2 (GDG Lead) -->
+                <circle class="chart-node" id="node-1" cx="600" cy="260" r="7" fill="var(--bg)" stroke="var(--cf)" stroke-width="2" data-index="1" />
+              </svg>
+            </div>
+            
+            <div class="dashboard-footer">
+              <div class="metrics-grid">
+                <div class="metric-item">
+                  <span class="metric-label">Loss Rate</span>
+                  <strong class="metric-value" id="loss-val">0.2180</strong>
+                </div>
+                <div class="metric-item">
+                  <span class="metric-label">Accuracy</span>
+                  <strong class="metric-value" id="acc-val">82.60%</strong>
+                </div>
+                <div class="metric-item">
+                  <span class="metric-label">Epoch</span>
+                  <strong class="metric-value" id="epoch-val">50/100</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Right: Dossier Readout -->
+          <div class="telemetry-dossier">
+            <div class="dossier-header">
+              <span class="panel-tag">[SYS.READOUT // EXP_DOSSIER]</span>
+            </div>
+            <div class="dossier-content" id="dossier-content">
+              <!-- Dynamically populated by script.js -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======== ABOUT ======== -->
+      <section class="section about perspective-wrapper" id="about">
+        <div class="section-bg-field" aria-hidden="true"></div>
+        <h2 class="heading">
+          <span>THE</span>
+          <span>PROCESS</span>
+        </h2>
+
+        <div class="about-grid">
+          <div class="about-left">
+            <p class="about-text">
+              I believe in <em>clean code</em>, <em>robust architectures</em>, and execution that speaks for itself. I bridge the gap between complex logic and seamless user experiences, taking ideas from research and structuring them into reliable, <em>production-ready systems</em>.
+            </p>
+            <p class="about-text">
+              My approach is built on detail. Every system is designed to be <em>lightweight</em>, <em>performant</em>, and <em>scalable</em>, ensuring it operates flawlessly under real-world demands. I don't just build features; I engineer reliable foundations that are easy to maintain and grow.
+            </p>
+            <p class="about-text">
+              In short: I take <em>complete ownership</em> of the technical stack, codebase health, and deployment gates so you can focus on what matters most: growing your business.
+            </p>
+          </div>
+
+          <div class="about-right">
+            <div class="about-stat">
+              <div class="about-stat-value">
+                <span class="about-stat-num" data-target="50">0</span><span class="about-stat-suffix">x</span>
+              </div>
+              <span class="about-stat-label">Memory Compression</span>
+            </div>
+            <div class="about-stat">
+              <div class="about-stat-value">
+                <span class="about-stat-num" data-target="250">0</span><span class="about-stat-suffix">+</span>
+              </div>
+              <span class="about-stat-label">Students Mentored</span>
+            </div>
+            <div class="about-stat">
+              <div class="about-stat-value">
+                <span class="about-stat-num" data-target="9.26" data-decimals="2">0</span>
+              </div>
+              <span class="about-stat-label">CGPA</span>
+            </div>
+            <div class="about-stat">
+              <div class="about-stat-value">
+                <span class="about-stat-num" data-target="4">0</span>
+              </div>
+              <span class="about-stat-label">Teams Mentored</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-skills">
+          <div class="skill-group">
+            <h4 class="skill-group-title">ML / AI</h4>
+            <div class="skill-items">
+              <span class="skill-item">PyTorch</span>
+              <span class="skill-item">Scikit-learn</span>
+              <span class="skill-item">RAG</span>
+              <span class="skill-item">Vector Quantization</span>
+              <span class="skill-item">MLOps</span>
+              <span class="skill-item">LangChain</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <h4 class="skill-group-title">Data</h4>
+            <div class="skill-items">
+              <span class="skill-item">Pandas</span>
+              <span class="skill-item">NumPy</span>
+              <span class="skill-item">SQL</span>
+              <span class="skill-item">Prophet</span>
+              <span class="skill-item">Tableau</span>
+            </div>
+          </div>
+          <div class="skill-group">
+            <h4 class="skill-group-title">Infra</h4>
+            <div class="skill-items">
+              <span class="skill-item">Docker</span>
+              <span class="skill-item">FastAPI</span>
+              <span class="skill-item">Redis</span>
+              <span class="skill-item">Celery</span>
+              <span class="skill-item">Azure</span>
+              <span class="skill-item">OCI</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="activity-stats" aria-label="Live coding activity">
+          <article class="activity-panel github-activity" data-state="loading">
+            <header class="activity-header">
+              <h3 class="activity-title"><span aria-hidden="true">&lt;&gt;</span> GitHub activity</h3>
+              <a class="activity-profile-link" href="https://github.com/sujal-b" target="_blank" rel="noreferrer">
+                github.com/sujal-b <span aria-hidden="true">↗</span>
+              </a>
+            </header>
+
+            <div class="activity-body">
+              <div class="github-metrics" aria-live="polite">
+                <div class="activity-metric">
+                  <span class="activity-metric-label">Contributions / year</span>
+                  <strong class="activity-metric-value" data-github-stat="contributions">--</strong>
+                </div>
+                <div class="activity-metric">
+                  <span class="activity-metric-label">Public repos</span>
+                  <strong class="activity-metric-value" data-github-stat="repos">--</strong>
+                </div>
+                <div class="activity-metric">
+                  <span class="activity-metric-label">Stars earned</span>
+                  <strong class="activity-metric-value" data-github-stat="stars">--</strong>
+                </div>
+                <div class="activity-metric">
+                  <span class="activity-metric-label">Longest streak</span>
+                  <strong class="activity-metric-value" data-github-stat="streak">--</strong>
+                </div>
+              </div>
+
+              <div class="contribution-scroll" tabindex="0" aria-label="GitHub contribution calendar. Scroll horizontally on small screens.">
+                <div class="contribution-calendar">
+                  <div class="contribution-months" aria-hidden="true">
+                    <span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span><span>Dec</span>
+                    <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span>
+                  </div>
+                  <div class="contribution-grid" data-contribution-grid role="img" aria-label="Loading GitHub contributions"></div>
+                </div>
+              </div>
+            </div>
+            <p class="activity-status" data-github-status>Fetching live GitHub data...</p>
+          </article>
+
+          <div class="activity-sequence" aria-hidden="true"><span>GitHub</span><span>→</span><span>LeetCode</span></div>
+
+          <article class="activity-panel leetcode-activity" data-state="loading">
+            <header class="activity-header">
+              <h3 class="activity-title"><span aria-hidden="true">▣</span> LeetCode solved</h3>
+              <div class="leetcode-total">
+                <span>Total solved</span>
+                <strong data-leetcode-total>--</strong>
+              </div>
+            </header>
+
+            <div class="activity-body leetcode-breakdown" aria-live="polite">
+              <div class="difficulty-row" data-difficulty="easy">
+                <div class="difficulty-meta"><span>Easy</span><strong>--</strong></div>
+                <div class="difficulty-track"><span></span></div>
+              </div>
+              <div class="difficulty-row" data-difficulty="medium">
+                <div class="difficulty-meta"><span>Medium</span><strong>--</strong></div>
+                <div class="difficulty-track"><span></span></div>
+              </div>
+              <div class="difficulty-row" data-difficulty="hard">
+                <div class="difficulty-meta"><span>Hard</span><strong>--</strong></div>
+                <div class="difficulty-track"><span></span></div>
+              </div>
+            </div>
+
+            <footer class="activity-panel-footer">
+              <p class="activity-status" data-leetcode-status>Fetching live LeetCode data...</p>
+              <a class="activity-profile-link" href="https://leetcode.com/u/KaiSuke/" target="_blank" rel="noreferrer">
+                leetcode.com/u/KaiSuke <span aria-hidden="true">↗</span>
+              </a>
+            </footer>
+          </article>
+        </div>
+      </section>
+
+      <!-- ======== EDUCATION & CREDENTIALS ======== -->
+      <section class="section education-section" id="education">
+        <div class="section-bg-field" aria-hidden="true"></div>
+
+        <h2 class="heading">
+          <span>EDUCATION &</span>
+          <span>CREDENTIALS</span>
+        </h2>
+
+        <div class="ledger-grid">
+          <!-- Left Column: Academic Dossier -->
+          <div class="academic-log">
+            <h3 class="ledger-subtitle">[ACADEMIC_LOG]</h3>
+            <div class="timeline-log">
+              <!-- Item 1: B.Tech -->
+              <div class="ledger-card" data-cursor="hover">
+                <div class="ledger-card-glow" aria-hidden="true"></div>
+                <div class="ledger-card-frame">
+                  <div class="ledger-card-header">
+                    <span class="ledger-date">2023 — 2027</span>
+                    <span class="ledger-tag ledger-tag-active">IN_PROGRESS</span>
+                  </div>
+                  <h4 class="ledger-title">B.Tech Computer Science and Engineering (AI/ML)</h4>
+                  <p class="ledger-institution">Amity University Mumbai</p>
+                  <p class="ledger-desc">Specialization in Artificial Intelligence & Machine Learning · Current CGPA: <strong>9.26/10</strong></p>
+                </div>
+              </div>
+
+              <!-- Item 2: Class XII -->
+              <div class="ledger-card" data-cursor="hover">
+                <div class="ledger-card-glow" aria-hidden="true"></div>
+                <div class="ledger-card-frame">
+                  <div class="ledger-card-header">
+                    <span class="ledger-date">2023</span>
+                    <span class="ledger-tag ledger-tag-completed">COMPLETED</span>
+                  </div>
+                  <h4 class="ledger-title">Higher Secondary (Class XII)</h4>
+                  <p class="ledger-institution">St. Paul School</p>
+                  <p class="ledger-desc">Secured solid core foundation in STEM fields (Mathematics, Physics, Chemistry).</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Certifications & Achievements -->
+          <div class="credentials-registry">
+            <h3 class="ledger-subtitle">[CREDENTIALS_REGISTRY]</h3>
+            <div class="registry-list">
+              <!-- Item 1: IBM RAG -->
+              <div class="ledger-card" data-cursor="hover">
+                <div class="ledger-card-glow" aria-hidden="true"></div>
+                <div class="ledger-card-frame">
+                  <div class="ledger-card-header">
+                    <span class="ledger-date">2026 (Expected)</span>
+                    <span class="ledger-tag ledger-tag-cert">IBM_VERIFIED</span>
+                  </div>
+                  <h4 class="ledger-title">IBM RAG and Agentic AI Professional</h4>
+                  <p class="ledger-institution">Coursera</p>
+                  <p class="ledger-skills"><strong>Topics:</strong> Multi-agent Systems, Agentic RAG, Chroma DB</p>
+                </div>
+              </div>
+
+              <!-- Item 2: Internshala DS -->
+              <div class="ledger-card" data-cursor="hover">
+                <div class="ledger-card-glow" aria-hidden="true"></div>
+                <div class="ledger-card-frame">
+                  <div class="ledger-card-header">
+                    <span class="ledger-date">2025</span>
+                    <span class="ledger-tag ledger-tag-cert">INTERNSHALA</span>
+                  </div>
+                  <h4 class="ledger-title">Data Science with AI</h4>
+                  <p class="ledger-institution">Internshala</p>
+                  <p class="ledger-skills"><strong>Topics:</strong> SQL, Machine Learning, Tableau, Predictive Modeling, Scikit-learn</p>
+                </div>
+              </div>
+
+              <!-- Item 3: Olympiad -->
+              <div class="ledger-card" data-cursor="hover">
+                <div class="ledger-card-glow" aria-hidden="true"></div>
+                <div class="ledger-card-frame">
+                  <div class="ledger-card-header">
+                    <span class="ledger-date">2018</span>
+                    <span class="ledger-tag ledger-tag-rank">IIT_BOMBAY</span>
+                  </div>
+                  <h4 class="ledger-title">National Science Olympiad</h4>
+                  <p class="ledger-institution">IIT Bombay</p>
+                  <p class="ledger-desc"><strong>Rankings:</strong> International Rank: <strong>5435</strong> · Zonal Rank: <strong>993</strong></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ======== FOOTER ======== -->
+      <footer class="footer" id="footer">
+        <div class="footer-top">
+          <div class="footer-logo-container footer-logo-container-1 perspective-hover-container">
+            <span class="footer-small-logo perspective-hover-element">SB</span>
+          </div>
+          <p class="footer-tagline">
+            Working with teams ready to break the mould. If you're bored of blending in,
+            drop a line and let's bring your idea to life.
+          </p>
+        </div>
+
+        <div class="footer-links-container">
+          <section class="footer-links footer-links-1" aria-label="Site Pages">
+            <h3 class="footer-links-title">Pages</h3>
+            <a href="#home">Home</a>
+            <a href="#projects">Projects</a>
+            <a href="#experience">Experience</a>
+            <a href="#about">About</a>
+            <a href="#education">Education</a>
+          </section>
+          <section class="footer-links footer-links-2" aria-label="Social Links">
+            <h3 class="footer-links-title">Socials</h3>
+            <a href="https://github.com/sujal-b" target="_blank">GitHub</a>
+            <a href="https://linkedin.com/in/sujal-barwad" target="_blank">LinkedIn</a>
+            <a href="https://leetcode.com/u/KaiSuke/" target="_blank">LeetCode</a>
+          </section>
+        </div>
+
+        <div class="footer-bottom">
+          <p class="copyright">Sujal Barwad © 2026</p>
+          <p class="copyright-links">
+            <a href="#">Terms</a> | <a href="#">Privacy</a>
+          </p>
+        </div>
+      </footer>
+
+    </div>
+  </div>
+
+  <!-- ======== MENU OVERLAY ======== -->
+  <div class="menu-panel" id="menuPanel" aria-hidden="true">
+    <div class="menu-panel-inner">
+      <div class="menu-contact-wrapper">
+        <p class="menu-mini-heading">Direct Contact</p>
+        <h2 class="menu-title">Let's <em>connect.</em></h2>
+        <p class="menu-para">
+          Reach out directly via email or phone:
+        </p>
+        <p class="menu-email"><a href="mailto:sujal.barwad27@gmail.com">sujal.barwad27@gmail.com</a></p>
+        <p class="menu-phone"><a href="tel:9075619050">+91 90756 19050</a></p>
+      </div>
+
+      <div class="menu-links-wrapper">
+        <a href="#home" class="menu-link" data-cursor="hover">
+          <span class="menu-link-num">01</span>
+          <span class="menu-link-text">Home</span>
+          <svg class="right-arrow" viewBox="0 0 20 20" fill="none"><path d="M8.09 1.67L15.39 8.82L0 8.82V11.18L15.39 11.18L8.09 18.33L9.79 20L20 10L9.79 0L8.09 1.67Z"/></svg>
+        </a>
+        <a href="#projects" class="menu-link" data-cursor="hover">
+          <span class="menu-link-num">02</span>
+          <span class="menu-link-text">Projects</span>
+          <svg class="right-arrow" viewBox="0 0 20 20" fill="none"><path d="M8.09 1.67L15.39 8.82L0 8.82V11.18L15.39 11.18L8.09 18.33L9.79 20L20 10L9.79 0L8.09 1.67Z"/></svg>
+        </a>
+        <a href="#experience" class="menu-link" data-cursor="hover">
+          <span class="menu-link-num">03</span>
+          <span class="menu-link-text">Experience</span>
+          <svg class="right-arrow" viewBox="0 0 20 20" fill="none"><path d="M8.09 1.67L15.39 8.82L0 8.82V11.18L15.39 11.18L8.09 18.33L9.79 20L20 10L9.79 0L8.09 1.67Z"/></svg>
+        </a>
+        <a href="#about" class="menu-link" data-cursor="hover">
+          <span class="menu-link-num">04</span>
+          <span class="menu-link-text">About</span>
+          <svg class="right-arrow" viewBox="0 0 20 20" fill="none"><path d="M8.09 1.67L15.39 8.82L0 8.82V11.18L15.39 11.18L8.09 18.33L9.79 20L20 10L9.79 0L8.09 1.67Z"/></svg>
+        </a>
+        <a href="#education" class="menu-link" data-cursor="hover">
+          <span class="menu-link-num">05</span>
+          <span class="menu-link-text">Education</span>
+          <svg class="right-arrow" viewBox="0 0 20 20" fill="none"><path d="M8.09 1.67L15.39 8.82L0 8.82V11.18L15.39 11.18L8.09 18.33L9.79 20L20 10L9.79 0L8.09 1.67Z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
